@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const trainingHighlights = [
   {
@@ -21,50 +24,94 @@ const trainingHighlights = [
   },
 ];
 
+// Placeholder images for the scrolling background
+const trainingImages = [
+  "/images/training-1.jpg",
+  "/images/training-2.jpg",
+  "/images/training-3.jpg",
+  "/images/training-4.jpg",
+  "/images/training-5.jpg",
+  "/images/training-6.jpg",
+];
+
+function ScrollingBackground() {
+  const [offset, setOffset] = useState(0);
+  const animationRef = useRef<number>(0);
+
+  useEffect(() => {
+    const animate = () => {
+      setOffset((prev) => (prev + 0.3) % 100);
+      animationRef.current = requestAnimationFrame(animate);
+    };
+    animationRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationRef.current);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Scrolling image placeholders */}
+      <div 
+        className="absolute inset-0 flex gap-4"
+        style={{ transform: `translateX(-${offset}%)` }}
+      >
+        {[...trainingImages, ...trainingImages, ...trainingImages].map((img, idx) => (
+          <div
+            key={idx}
+            className="flex-shrink-0 w-80 h-60 rounded-xl"
+            style={{ backgroundColor: `hsl(${(idx * 30) % 360}, 40%, 85%)` }}
+          >
+            <div className="w-full h-full flex items-center justify-center text-muted-foreground/50 text-sm">
+              {img.split("/").pop()}
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* 78% overlay */}
+      <div className="absolute inset-0 bg-[#1B3A5F]/[0.78]" />
+    </div>
+  );
+}
+
 export function Training() {
   return (
-    <section className="py-24 lg:py-32 bg-secondary relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-[#9B8BB4]/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#FF6B35]/10 rounded-full blur-3xl" />
-      </div>
+    <section className="py-24 lg:py-32 relative overflow-hidden">
+      <ScrollingBackground />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
-          <div>
-            <span className="text-sm font-semibold text-[#9B8BB4] uppercase tracking-wider">
+          <div className="text-white">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/90 text-sm font-semibold uppercase tracking-wider mb-6">
               Training & Equipping
             </span>
-            <h2 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-primary">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
               Equip Your Team for Impact
             </h2>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+            <p className="mt-6 text-lg text-white/80 leading-relaxed">
               Effective children&apos;s ministry requires well-trained volunteers and leaders.
               Our training programs equip your team with practical skills, biblical foundations,
               and proven strategies.
             </p>
 
-            <div className="mt-10 grid sm:grid-cols-3 gap-6">
-              <div className="text-center sm:text-left">
-                <div className="text-3xl lg:text-4xl font-bold text-[#9B8BB4]">50+</div>
-                <div className="text-sm text-muted-foreground mt-1">Training Events</div>
+            <div className="mt-10 grid grid-cols-3 gap-6">
+              <div className="text-center lg:text-left">
+                <div className="text-3xl lg:text-4xl font-bold text-[#FFC107]">50+</div>
+                <div className="text-sm text-white/70 mt-1">Training Events</div>
               </div>
-              <div className="text-center sm:text-left">
-                <div className="text-3xl lg:text-4xl font-bold text-[#9B8BB4]">5000+</div>
-                <div className="text-sm text-muted-foreground mt-1">Leaders Trained</div>
+              <div className="text-center lg:text-left">
+                <div className="text-3xl lg:text-4xl font-bold text-[#FFC107]">5000+</div>
+                <div className="text-sm text-white/70 mt-1">Leaders Trained</div>
               </div>
-              <div className="text-center sm:text-left">
-                <div className="text-3xl lg:text-4xl font-bold text-[#9B8BB4]">15+</div>
-                <div className="text-sm text-muted-foreground mt-1">Years Experience</div>
+              <div className="text-center lg:text-left">
+                <div className="text-3xl lg:text-4xl font-bold text-[#FFC107]">15+</div>
+                <div className="text-sm text-white/70 mt-1">Years Experience</div>
               </div>
             </div>
 
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/training"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#9B8BB4] text-white font-semibold rounded-full hover:bg-[#9B8BB4]/90 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#FFC107] text-[#1B3A5F] font-semibold rounded-full hover:bg-[#FFC107]/90 transition-colors"
               >
                 View All Training
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -73,7 +120,7 @@ export function Training() {
               </Link>
               <Link
                 href="/training#upcoming"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-[#9B8BB4] text-[#9B8BB4] font-semibold rounded-full hover:bg-[#9B8BB4] hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-colors"
               >
                 Upcoming Events
               </Link>
@@ -82,28 +129,25 @@ export function Training() {
 
           {/* Training Cards */}
           <div className="space-y-4">
-            {trainingHighlights.map((training, index) => (
+            {trainingHighlights.map((training) => (
               <div
                 key={training.title}
-                className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all hover:-translate-y-1"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
+                className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/15 transition-all"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-primary mb-2">
+                    <h3 className="text-lg font-bold text-white mb-2">
                       {training.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-white/70">
                       {training.description}
                     </p>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm font-semibold text-[#9B8BB4]">
+                    <div className="text-sm font-semibold text-[#FFC107]">
                       {training.attendees}
                     </div>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="text-xs text-white/60">
                       {training.date}
                     </div>
                   </div>
@@ -114,14 +158,14 @@ export function Training() {
             {/* CTA Card */}
             <Link
               href="/training"
-              className="block bg-[#9B8BB4]/10 border-2 border-dashed border-[#9B8BB4]/30 rounded-2xl p-6 text-center hover:border-[#9B8BB4] transition-colors group"
+              className="block bg-white/5 border-2 border-dashed border-white/20 rounded-2xl p-6 text-center hover:border-white/40 transition-colors group"
             >
-              <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-[#9B8BB4]/20 flex items-center justify-center group-hover:bg-[#9B8BB4]/30 transition-colors">
-                <svg className="w-6 h-6 text-[#9B8BB4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <svg className="w-6 h-6 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
               </div>
-              <span className="font-semibold text-[#9B8BB4]">See All Training Programs</span>
+              <span className="font-semibold text-white/80">See All Training Programs</span>
             </Link>
           </div>
         </div>

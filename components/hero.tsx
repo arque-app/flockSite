@@ -3,14 +3,16 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-// Abstract shapes configuration
+// Animated shapes that emphasize catching (nets/circles) and nurturing (growing/organic shapes)
 const shapes = [
-  { size: 80, color: "#5ABCB9", opacity: 0.15, speed: 0.5, startX: 10, startY: 20 },
-  { size: 120, color: "#8DC63F", opacity: 0.12, speed: 0.3, startX: 80, startY: 60 },
-  { size: 60, color: "#F28B82", opacity: 0.18, speed: 0.7, startX: 70, startY: 15 },
-  { size: 100, color: "#FF6B35", opacity: 0.1, speed: 0.4, startX: 20, startY: 70 },
-  { size: 90, color: "#FFD93D", opacity: 0.14, speed: 0.6, startX: 50, startY: 40 },
-  { size: 70, color: "#9B8BB4", opacity: 0.12, speed: 0.45, startX: 85, startY: 80 },
+  // "Catching" shapes - nets, circles representing VBS gathering
+  { type: "net", size: 180, color: "#00B5AD", opacity: 0.35, speed: 0.3, startX: 15, startY: 25 },
+  { type: "circle", size: 120, color: "#FF5722", opacity: 0.3, speed: 0.4, startX: 75, startY: 20 },
+  { type: "net", size: 140, color: "#7CB518", opacity: 0.25, speed: 0.35, startX: 85, startY: 65 },
+  // "Nurturing" shapes - organic, growing forms for Sunday School
+  { type: "organic", size: 160, color: "#8B5CF6", opacity: 0.28, speed: 0.25, startX: 20, startY: 70 },
+  { type: "organic", size: 100, color: "#FFC107", opacity: 0.35, speed: 0.45, startX: 55, startY: 45 },
+  { type: "circle", size: 90, color: "#FF6B6B", opacity: 0.3, speed: 0.5, startX: 40, startY: 80 },
 ];
 
 function HeroBackground() {
@@ -26,11 +28,12 @@ function HeroBackground() {
     if (!ctx) return;
 
     const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     };
 
-    const drawShape = (
+    const drawNet = (
       x: number,
       y: number,
       size: number,
@@ -43,26 +46,73 @@ function HeroBackground() {
       ctx.rotate(rotation);
       ctx.globalAlpha = opacity;
 
-      // Draw soft blob shape
+      // Draw a net-like catching pattern
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      
+      // Outer arc (like a fishing net opening)
       ctx.beginPath();
-      const points = 6;
-      for (let i = 0; i <= points; i++) {
-        const angle = (i / points) * Math.PI * 2;
-        const wobble = Math.sin(angle * 3 + rotation * 2) * (size * 0.15);
-        const r = size / 2 + wobble;
+      ctx.arc(0, 0, size / 2, -Math.PI * 0.8, Math.PI * 0.8, false);
+      ctx.stroke();
+      
+      // Inner concentric arcs
+      for (let i = 1; i <= 3; i++) {
+        ctx.beginPath();
+        ctx.arc(0, 0, (size / 2) * (1 - i * 0.25), -Math.PI * 0.7, Math.PI * 0.7, false);
+        ctx.stroke();
+      }
+      
+      // Radial lines
+      for (let i = -3; i <= 3; i++) {
+        const angle = (i / 4) * Math.PI * 0.8;
+        ctx.beginPath();
+        ctx.moveTo(Math.cos(angle) * size * 0.15, Math.sin(angle) * size * 0.15);
+        ctx.lineTo(Math.cos(angle) * size * 0.5, Math.sin(angle) * size * 0.5);
+        ctx.stroke();
+      }
+
+      ctx.restore();
+    };
+
+    const drawOrganic = (
+      x: number,
+      y: number,
+      size: number,
+      color: string,
+      opacity: number,
+      rotation: number
+    ) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.globalAlpha = opacity;
+
+      // Draw organic nurturing shape (like a growing plant/heart)
+      ctx.beginPath();
+      const points = 8;
+      for (let i = 0; i <= points * 2; i++) {
+        const angle = (i / (points * 2)) * Math.PI * 2;
+        const wobble = Math.sin(angle * 4 + rotation * 3) * (size * 0.2);
+        const pulse = Math.sin(rotation * 2) * (size * 0.05);
+        const r = size / 2 + wobble + pulse;
         const px = Math.cos(angle) * r;
         const py = Math.sin(angle) * r;
         if (i === 0) {
           ctx.moveTo(px, py);
         } else {
-          ctx.lineTo(px, py);
+          ctx.quadraticCurveTo(
+            Math.cos(angle - 0.1) * (r + 10),
+            Math.sin(angle - 0.1) * (r + 10),
+            px,
+            py
+          );
         }
       }
       ctx.closePath();
 
-      // Gradient fill
       const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, size / 2);
       gradient.addColorStop(0, color);
+      gradient.addColorStop(0.7, color);
       gradient.addColorStop(1, `${color}00`);
       ctx.fillStyle = gradient;
       ctx.fill();
@@ -70,18 +120,60 @@ function HeroBackground() {
       ctx.restore();
     };
 
+    const drawCircle = (
+      x: number,
+      y: number,
+      size: number,
+      color: string,
+      opacity: number,
+      rotation: number
+    ) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.globalAlpha = opacity;
+
+      // Pulsing circle with ring
+      const pulse = Math.sin(rotation * 3) * 0.1 + 1;
+      
+      // Outer ring
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(0, 0, (size / 2) * pulse, 0, Math.PI * 2);
+      ctx.stroke();
+      
+      // Inner filled circle
+      const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, (size / 3) * pulse);
+      gradient.addColorStop(0, color);
+      gradient.addColorStop(1, `${color}50`);
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(0, 0, (size / 3) * pulse, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    };
+
     const animate = () => {
       if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      ctx.clearRect(0, 0, width, height);
 
-      timeRef.current += 0.008;
+      timeRef.current += 0.012;
 
       shapes.forEach((shape, i) => {
-        const x = (shape.startX / 100) * canvas.width + Math.sin(timeRef.current * shape.speed + i) * 30;
-        const y = (shape.startY / 100) * canvas.height + Math.cos(timeRef.current * shape.speed + i * 0.5) * 25;
-        const rotation = timeRef.current * shape.speed * 0.5;
+        const x = (shape.startX / 100) * width + Math.sin(timeRef.current * shape.speed + i * 1.5) * 50;
+        const y = (shape.startY / 100) * height + Math.cos(timeRef.current * shape.speed * 0.8 + i) * 40;
+        const rotation = timeRef.current * shape.speed;
 
-        drawShape(x, y, shape.size, shape.color, shape.opacity, rotation);
+        if (shape.type === "net") {
+          drawNet(x, y, shape.size, shape.color, shape.opacity, rotation);
+        } else if (shape.type === "organic") {
+          drawOrganic(x, y, shape.size, shape.color, shape.opacity, rotation);
+        } else {
+          drawCircle(x, y, shape.size, shape.color, shape.opacity, rotation);
+        }
       });
 
       animationRef.current = requestAnimationFrame(animate);
@@ -112,8 +204,8 @@ export function Hero() {
       <HeroBackground />
       <div className="max-w-6xl mx-auto text-center relative z-10">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card mb-10">
-          <span className="w-2 h-2 rounded-full bg-[#FF6B35] animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card/80 backdrop-blur-sm mb-10">
+          <span className="w-2 h-2 rounded-full bg-[#FF5722] animate-pulse" />
           <span className="text-sm text-muted-foreground font-medium">
             Building Strong Foundations for the Next Generation Starting from Kids
           </span>
@@ -121,8 +213,12 @@ export function Hero() {
 
         {/* Main Headline */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.9] mb-8 text-primary text-balance">
-          <span className="block">Catching at VBS.</span>
-          <span className="block text-muted-foreground">Nurturing at Sunday School.</span>
+          <span className="block">
+            <span className="text-[#00B5AD]">Catching</span> at VBS.
+          </span>
+          <span className="block">
+            <span className="text-[#8B5CF6]">Nurturing</span> at Sunday School.
+          </span>
         </h1>
 
         {/* Subheadline */}
@@ -135,13 +231,13 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="#contact"
-            className="px-8 py-4 bg-[#FF6B35] text-white font-semibold rounded-full hover:bg-[#FF6B35]/90 transition-colors text-base shadow-lg shadow-[#FF6B35]/25"
+            className="px-8 py-4 bg-[#FF5722] text-white font-semibold rounded-full hover:bg-[#FF5722]/90 transition-colors text-base shadow-lg shadow-[#FF5722]/30"
           >
             Get Started
           </Link>
           <Link
             href="#approach"
-            className="px-8 py-4 border border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-primary-foreground transition-colors flex items-center gap-2 text-base"
+            className="px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-primary-foreground transition-colors flex items-center gap-2 text-base"
           >
             Learn More
             <svg

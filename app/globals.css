@@ -21,15 +21,15 @@
   --color-ring: #1B3A5F;
   --radius: 0.5rem;
 
-  /* Logo accent colors for subtle highlights */
-  --color-teal: #5ABCB9;
-  --color-green: #8DC63F;
-  --color-coral: #F28B82;
-  --color-purple: #9B8BB4;
+  /* Logo accent colors - more vibrant and poppy */
+  --color-teal: #00B5AD;
+  --color-green: #7CB518;
+  --color-coral: #FF6B6B;
+  --color-purple: #8B5CF6;
   
   /* Bright accent for kids/attention grabbing */
-  --color-kids-bright: #FF6B35;
-  --color-kids-yellow: #FFD93D;
+  --color-kids-bright: #FF5722;
+  --color-kids-yellow: #FFC107;
 
   --font-sans: "Lexend", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
