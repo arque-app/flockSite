@@ -10,6 +10,7 @@ const steps = [
       "Simple gospel presentations",
       "Engaging group activities",
     ],
+    color: "#5ABCB9",
   },
   {
     number: "02",
@@ -22,6 +23,7 @@ const steps = [
       "Bible memory programs",
       "Teacher training resources",
     ],
+    color: "#8DC63F",
   },
   {
     number: "03",
@@ -34,19 +36,20 @@ const steps = [
       "Weekly devotionals",
       "Family discussion guides",
     ],
+    color: "#F28B82",
   },
 ];
 
 export function Approach() {
   return (
-    <section id="approach" className="py-24 lg:py-32 bg-card">
+    <section id="approach" className="py-24 lg:py-32 bg-secondary">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mb-20">
-          <span className="text-sm font-semibold text-accent uppercase tracking-wider">
+          <span className="text-sm font-semibold text-[#5ABCB9] uppercase tracking-wider">
             Our Approach
           </span>
-          <h2 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+          <h2 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-primary">
             The Flock Ministry Journey
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
@@ -67,10 +70,13 @@ export function Approach() {
               {/* Content */}
               <div className="flex-1">
                 <div className="flex items-baseline gap-4 mb-6">
-                  <span className="text-6xl lg:text-8xl font-bold text-muted-foreground/30">
+                  <span 
+                    className="text-6xl lg:text-8xl font-bold"
+                    style={{ color: `${step.color}30` }}
+                  >
                     {step.number}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary">
                     {step.title}
                   </h3>
                 </div>
@@ -81,10 +87,11 @@ export function Approach() {
                   {step.features.map((feature) => (
                     <li
                       key={feature}
-                      className="flex items-center gap-3 text-foreground"
+                      className="flex items-center gap-3 text-primary"
                     >
                       <svg
-                        className="w-5 h-5 text-accent flex-shrink-0"
+                        className="w-5 h-5 flex-shrink-0"
+                        style={{ color: step.color }}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -104,9 +111,15 @@ export function Approach() {
 
               {/* Visual placeholder */}
               <div className="flex-1 w-full">
-                <div className="aspect-[4/3] bg-secondary rounded-3xl border border-border flex items-center justify-center">
+                <div 
+                  className="aspect-[4/3] rounded-3xl border border-border flex items-center justify-center"
+                  style={{ backgroundColor: `${step.color}10` }}
+                >
                   <div className="text-center">
-                    <div className="text-6xl font-bold text-muted-foreground/20">
+                    <div 
+                      className="text-6xl font-bold"
+                      style={{ color: `${step.color}40` }}
+                    >
                       {step.number}
                     </div>
                   </div>

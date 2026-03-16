@@ -1,4 +1,5 @@
 import { Header } from "@/components/header";
+import { Announcements } from "@/components/announcements";
 import { Hero } from "@/components/hero";
 import { Challenge } from "@/components/challenge";
 import { Approach } from "@/components/approach";
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <>
       <Header />
+      <Announcements />
       <main>
         <Hero />
         <Challenge />

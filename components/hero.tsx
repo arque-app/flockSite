@@ -2,18 +2,18 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 px-6">
+    <section className="min-h-[90vh] flex items-center justify-center pt-24 pb-16 px-6 bg-background">
       <div className="max-w-6xl mx-auto text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card mb-10">
-          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-[#5ABCB9] animate-pulse" />
           <span className="text-sm text-muted-foreground font-medium">
             Raising the next generation in faith
           </span>
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.9] mb-8">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.9] mb-8 text-primary">
           <span className="block">Catching at VBS.</span>
           <span className="block text-muted-foreground">Nurturing at Sunday School.</span>
         </h1>
@@ -34,7 +34,7 @@ export function Hero() {
           </Link>
           <Link
             href="#approach"
-            className="px-8 py-4 border border-border text-foreground font-medium rounded-full hover:bg-card transition-colors flex items-center gap-2 text-base"
+            className="px-8 py-4 border border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-primary-foreground transition-colors flex items-center gap-2 text-base"
           >
             Learn More
             <svg
@@ -54,22 +54,22 @@ export function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="mt-24 pt-12 border-t border-border">
+        <div className="mt-20 pt-12 border-t border-border">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold">500+</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary">500+</div>
               <div className="text-sm text-muted-foreground mt-1">Churches</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold">50K+</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary">50K+</div>
               <div className="text-sm text-muted-foreground mt-1">Children Reached</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold">1000+</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary">1000+</div>
               <div className="text-sm text-muted-foreground mt-1">Volunteers Trained</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold">10+</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary">10+</div>
               <div className="text-sm text-muted-foreground mt-1">Years of Ministry</div>
             </div>
           </div>

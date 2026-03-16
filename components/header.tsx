@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -14,12 +15,19 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight">FLOCK</span>
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/images/flock-logo.png"
+              alt="Flock Logo"
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
+            <span className="text-xl font-bold tracking-tight text-primary">FLOCK</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -28,7 +36,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label}
               </Link>
@@ -48,19 +56,19 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="lg:hidden p-2 text-foreground"
+            className="lg:hidden p-2 text-primary"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
             <div className="w-6 h-5 flex flex-col justify-between">
               <span
-                className={`block h-0.5 w-full bg-foreground transition-transform duration-300 ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+                className={`block h-0.5 w-full bg-primary transition-transform duration-300 ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`}
               />
               <span
-                className={`block h-0.5 w-full bg-foreground transition-opacity duration-300 ${mobileMenuOpen ? "opacity-0" : ""}`}
+                className={`block h-0.5 w-full bg-primary transition-opacity duration-300 ${mobileMenuOpen ? "opacity-0" : ""}`}
               />
               <span
-                className={`block h-0.5 w-full bg-foreground transition-transform duration-300 ${mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                className={`block h-0.5 w-full bg-primary transition-transform duration-300 ${mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
               />
             </div>
           </button>
@@ -76,7 +84,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="block text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="block text-lg font-medium text-muted-foreground hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.label}

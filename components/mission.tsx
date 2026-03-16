@@ -1,10 +1,10 @@
 export function Mission() {
   return (
-    <section id="mission" className="py-24 lg:py-32">
+    <section id="mission" className="py-24 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="relative bg-foreground text-background rounded-3xl overflow-hidden">
+        <div className="relative bg-primary text-primary-foreground rounded-3xl overflow-hidden">
           {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <defs>
                 <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
@@ -18,7 +18,7 @@ export function Mission() {
           <div className="relative px-8 py-20 sm:px-16 sm:py-28 lg:px-24 lg:py-32">
             <div className="max-w-4xl mx-auto text-center">
               {/* Cross Icon */}
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-background/20 mb-10">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-primary-foreground/20 mb-10">
                 <svg
                   viewBox="0 0 24 24"
                   className="w-8 h-8"
@@ -34,19 +34,19 @@ export function Mission() {
                 Building Strong Foundations for the Next Generation
               </h2>
 
-              <p className="mt-8 text-xl text-background/70 leading-relaxed max-w-2xl mx-auto">
+              <p className="mt-8 text-xl text-primary-foreground/80 leading-relaxed max-w-2xl mx-auto">
                 Flock exists to help churches build a strong spiritual
                 foundation in the next generation. We believe that every child
                 deserves the opportunity to know and grow in the love of Jesus
                 Christ.
               </p>
 
-              <div className="mt-12 pt-12 border-t border-background/10">
-                <blockquote className="text-xl sm:text-2xl italic text-background/90">
+              <div className="mt-12 pt-12 border-t border-primary-foreground/20">
+                <blockquote className="text-xl sm:text-2xl italic text-primary-foreground/90">
                   &ldquo;Train up a child in the way he should go; even when he
                   is old he will not depart from it.&rdquo;
                 </blockquote>
-                <p className="mt-4 text-sm text-background/50 font-semibold uppercase tracking-wider">
+                <p className="mt-4 text-sm text-primary-foreground/60 font-semibold uppercase tracking-wider">
                   Proverbs 22:6
                 </p>
               </div>

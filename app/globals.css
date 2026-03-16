@@ -1,24 +1,31 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #0A0A0A;
-  --color-foreground: #FAFAFA;
-  --color-card: #141414;
-  --color-card-foreground: #FAFAFA;
-  --color-primary: #FAFAFA;
-  --color-primary-foreground: #0A0A0A;
-  --color-secondary: #1F1F1F;
-  --color-secondary-foreground: #FAFAFA;
-  --color-muted: #262626;
-  --color-muted-foreground: #A3A3A3;
-  --color-accent: #FF6B35;
-  --color-accent-foreground: #FAFAFA;
+  /* Mature, ministry-focused palette based on Flock logo */
+  --color-background: #FAFAFA;
+  --color-foreground: #1B3A5F;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #1B3A5F;
+  --color-primary: #1B3A5F;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #F0F4F8;
+  --color-secondary-foreground: #1B3A5F;
+  --color-muted: #E8EEF4;
+  --color-muted-foreground: #5A7A99;
+  --color-accent: #5ABCB9;
+  --color-accent-foreground: #FFFFFF;
   --color-destructive: #DC2626;
   --color-destructive-foreground: #FFFFFF;
-  --color-border: #262626;
-  --color-input: #262626;
-  --color-ring: #FAFAFA;
+  --color-border: #D1DCE8;
+  --color-input: #E8EEF4;
+  --color-ring: #1B3A5F;
   --radius: 0.5rem;
+
+  /* Logo accent colors for subtle highlights */
+  --color-teal: #5ABCB9;
+  --color-green: #8DC63F;
+  --color-coral: #F28B82;
+  --color-purple: #9B8BB4;
 
   --font-sans: "Lexend", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
