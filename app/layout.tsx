@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Lexend } from "next/font/google";
+import { AnimatedBackground } from "@/components/animated-background";
 import "./globals.css";
 
 const lexend = Lexend({
@@ -36,7 +37,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${lexend.variable} font-sans antialiased`}>
-        {children}
+        <AnimatedBackground />
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

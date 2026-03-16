@@ -7,7 +7,8 @@ import Image from "next/image";
 const navLinks = [
   { href: "#about", label: "About" },
   { href: "#approach", label: "Approach" },
-  { href: "#resources", label: "Resources" },
+  { href: "/flock-ministries", label: "Apps" },
+  { href: "/partner", label: "Partner" },
   { href: "#contact", label: "Contact" },
 ];
 

@@ -3,22 +3,22 @@ import Image from "next/image";
 
 const footerLinks = {
   resources: [
-    { label: "VBS Programs", href: "#" },
-    { label: "Sunday School", href: "#" },
-    { label: "Songs & Videos", href: "#" },
-    { label: "Training", href: "#" },
+    { label: "VBS Programs", href: "#approach" },
+    { label: "Sunday School", href: "#approach" },
+    { label: "Mobile Apps", href: "/flock-ministries" },
+    { label: "Training", href: "/flock-ministries" },
   ],
   company: [
     { label: "About Us", href: "#about" },
     { label: "Our Mission", href: "#mission" },
+    { label: "Partner", href: "/partner" },
     { label: "Contact", href: "#contact" },
-    { label: "Careers", href: "#" },
   ],
   support: [
-    { label: "Help Center", href: "#" },
-    { label: "FAQs", href: "#" },
-    { label: "Community", href: "#" },
-    { label: "Feedback", href: "#" },
+    { label: "App Support", href: "/flock-ministries" },
+    { label: "FAQs", href: "/flock-ministries#faq" },
+    { label: "Give", href: "/partner" },
+    { label: "Feedback", href: "#contact" },
   ],
 };
 

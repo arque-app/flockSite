@@ -18,7 +18,7 @@ export function Challenge() {
               to continue nurturing them afterward. Without structured follow-up, 
               most children don&apos;t continue their faith journey after VBS ends.
             </p>
-            <p className="mt-4 text-lg text-primary font-medium">
+            <p className="mt-4 text-xl md:text-2xl text-[#FF6B35] font-bold">
               Flock bridges that gap.
             </p>
           </div>
