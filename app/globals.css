@@ -26,6 +26,10 @@
   --color-green: #8DC63F;
   --color-coral: #F28B82;
   --color-purple: #9B8BB4;
+  
+  /* Bright accent for kids/attention grabbing */
+  --color-kids-bright: #FF6B35;
+  --color-kids-yellow: #FFD93D;
 
   --font-sans: "Lexend", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
