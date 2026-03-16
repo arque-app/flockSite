@@ -1,12 +1,9 @@
-import { Music, BookOpen, Smartphone } from "lucide-react";
-
 const steps = [
   {
-    step: "Step 1",
+    number: "01",
     title: "Catching at VBS",
     description:
       "Engaging songs, action videos, and easy-to-follow programs that attract children and introduce them to the gospel message through fun, memorable experiences.",
-    icon: Music,
     features: [
       "High-energy worship songs",
       "Interactive action videos",
@@ -15,11 +12,10 @@ const steps = [
     ],
   },
   {
-    step: "Step 2",
+    number: "02",
     title: "Nurturing at Sunday School",
     description:
       "Structured lessons and teaching materials that help children grow in biblical understanding and character development throughout the year.",
-    icon: BookOpen,
     features: [
       "Age-appropriate curriculum",
       "Character-building lessons",
@@ -28,11 +24,10 @@ const steps = [
     ],
   },
   {
-    step: "Step 3",
+    number: "03",
     title: "Staying Connected",
     description:
       "A mobile app where children can watch songs and action videos, helping them stay connected to the gospel message even outside of church.",
-    icon: Smartphone,
     features: [
       "On-demand song library",
       "Action video tutorials",
@@ -44,78 +39,76 @@ const steps = [
 
 export function Approach() {
   return (
-    <section id="approach" className="py-20 lg:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-sm font-medium text-primary uppercase tracking-wider">
+    <section id="approach" className="py-24 lg:py-32 bg-card">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Header */}
+        <div className="max-w-3xl mb-20">
+          <span className="text-sm font-semibold text-accent uppercase tracking-wider">
             Our Approach
           </span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground text-balance">
+          <h2 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
             The Flock Ministry Journey
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground text-pretty">
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             A comprehensive approach to children&apos;s ministry that catches,
             nurtures, and keeps children connected to their faith.
           </p>
         </div>
 
-        <div className="space-y-12 lg:space-y-20">
-          {steps.map((item, index) => (
+        {/* Steps */}
+        <div className="space-y-16 lg:space-y-24">
+          {steps.map((step, index) => (
             <div
-              key={item.title}
+              key={step.number}
               className={`flex flex-col ${
                 index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
-              } items-center gap-8 lg:gap-16`}
+              } gap-12 lg:gap-20 items-start`}
             >
               {/* Content */}
-              <div className="flex-1 w-full">
-                <div className="max-w-xl">
-                  <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-                    {item.step}
+              <div className="flex-1">
+                <div className="flex items-baseline gap-4 mb-6">
+                  <span className="text-6xl lg:text-8xl font-bold text-muted-foreground/30">
+                    {step.number}
                   </span>
-                  <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground mb-4">
-                    {item.title}
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+                    {step.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
-                    {item.description}
-                  </p>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {item.features.map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex items-center gap-2 text-foreground"
-                      >
-                        <svg
-                          className="w-5 h-5 text-primary flex-shrink-0"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                  {step.description}
+                </p>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {step.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-center gap-3 text-foreground"
+                    >
+                      <svg
+                        className="w-5 h-5 text-accent flex-shrink-0"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      <span className="font-medium">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              {/* Visual */}
+              {/* Visual placeholder */}
               <div className="flex-1 w-full">
-                <div className="relative bg-secondary rounded-3xl p-8 lg:p-12 aspect-square max-w-md mx-auto flex items-center justify-center">
-                  <div className="absolute inset-4 border-2 border-dashed border-primary/20 rounded-2xl" />
-                  <div className="relative z-10 text-center">
-                    <div className="w-20 h-20 mx-auto bg-primary rounded-2xl flex items-center justify-center mb-4">
-                      <item.icon className="w-10 h-10 text-primary-foreground" />
+                <div className="aspect-[4/3] bg-secondary rounded-3xl border border-border flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-6xl font-bold text-muted-foreground/20">
+                      {step.number}
                     </div>
-                    <p className="font-serif text-xl font-semibold text-foreground">
-                      {item.title}
-                    </p>
                   </div>
                 </div>
               </div>

@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #FBF7F4;
-  --color-foreground: #2D2D2D;
-  --color-card: #FFFFFF;
-  --color-card-foreground: #2D2D2D;
-  --color-primary: #5B7C6B;
-  --color-primary-foreground: #FFFFFF;
-  --color-secondary: #F5EDE6;
-  --color-secondary-foreground: #2D2D2D;
-  --color-muted: #E8E0D8;
-  --color-muted-foreground: #6B6B6B;
-  --color-accent: #D4A574;
-  --color-accent-foreground: #2D2D2D;
+  --color-background: #0A0A0A;
+  --color-foreground: #FAFAFA;
+  --color-card: #141414;
+  --color-card-foreground: #FAFAFA;
+  --color-primary: #FAFAFA;
+  --color-primary-foreground: #0A0A0A;
+  --color-secondary: #1F1F1F;
+  --color-secondary-foreground: #FAFAFA;
+  --color-muted: #262626;
+  --color-muted-foreground: #A3A3A3;
+  --color-accent: #FF6B35;
+  --color-accent-foreground: #FAFAFA;
   --color-destructive: #DC2626;
   --color-destructive-foreground: #FFFFFF;
-  --color-border: #E2DAD1;
-  --color-input: #E2DAD1;
-  --color-ring: #5B7C6B;
-  --radius: 0.625rem;
+  --color-border: #262626;
+  --color-input: #262626;
+  --color-ring: #FAFAFA;
+  --radius: 0.5rem;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Lexend", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
 }
 
 * {
