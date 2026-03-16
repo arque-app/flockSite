@@ -1,9 +1,116 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+
+// Abstract shapes configuration
+const shapes = [
+  { size: 80, color: "#5ABCB9", opacity: 0.15, speed: 0.5, startX: 10, startY: 20 },
+  { size: 120, color: "#8DC63F", opacity: 0.12, speed: 0.3, startX: 80, startY: 60 },
+  { size: 60, color: "#F28B82", opacity: 0.18, speed: 0.7, startX: 70, startY: 15 },
+  { size: 100, color: "#FF6B35", opacity: 0.1, speed: 0.4, startX: 20, startY: 70 },
+  { size: 90, color: "#FFD93D", opacity: 0.14, speed: 0.6, startX: 50, startY: 40 },
+  { size: 70, color: "#9B8BB4", opacity: 0.12, speed: 0.45, startX: 85, startY: 80 },
+];
+
+function HeroBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationRef = useRef<number>(0);
+  const timeRef = useRef(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+
+    const drawShape = (
+      x: number,
+      y: number,
+      size: number,
+      color: string,
+      opacity: number,
+      rotation: number
+    ) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.globalAlpha = opacity;
+
+      // Draw soft blob shape
+      ctx.beginPath();
+      const points = 6;
+      for (let i = 0; i <= points; i++) {
+        const angle = (i / points) * Math.PI * 2;
+        const wobble = Math.sin(angle * 3 + rotation * 2) * (size * 0.15);
+        const r = size / 2 + wobble;
+        const px = Math.cos(angle) * r;
+        const py = Math.sin(angle) * r;
+        if (i === 0) {
+          ctx.moveTo(px, py);
+        } else {
+          ctx.lineTo(px, py);
+        }
+      }
+      ctx.closePath();
+
+      // Gradient fill
+      const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, size / 2);
+      gradient.addColorStop(0, color);
+      gradient.addColorStop(1, `${color}00`);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      ctx.restore();
+    };
+
+    const animate = () => {
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      timeRef.current += 0.008;
+
+      shapes.forEach((shape, i) => {
+        const x = (shape.startX / 100) * canvas.width + Math.sin(timeRef.current * shape.speed + i) * 30;
+        const y = (shape.startY / 100) * canvas.height + Math.cos(timeRef.current * shape.speed + i * 0.5) * 25;
+        const rotation = timeRef.current * shape.speed * 0.5;
+
+        drawShape(x, y, shape.size, shape.color, shape.opacity, rotation);
+      });
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    resizeCanvas();
+    animate();
+
+    window.addEventListener("resize", resizeCanvas);
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationRef.current);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      aria-hidden="true"
+    />
+  );
+}
 
 export function Hero() {
   return (
-    <section className="min-h-[90vh] flex items-center justify-center pt-32 lg:pt-36 pb-16 px-6 bg-background relative">
-      <div className="max-w-6xl mx-auto text-center">
+    <section className="min-h-[90vh] flex items-center justify-center pt-32 lg:pt-36 pb-16 px-6 bg-background relative overflow-hidden">
+      <HeroBackground />
+      <div className="max-w-6xl mx-auto text-center relative z-10">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card mb-10">
           <span className="w-2 h-2 rounded-full bg-[#FF6B35] animate-pulse" />

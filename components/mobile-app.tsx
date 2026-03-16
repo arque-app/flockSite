@@ -2,22 +2,24 @@ import Link from "next/link";
 
 const apps = [
   {
-    id: "kids",
-    name: "Flock Kids",
+    id: "ministries",
+    name: "Flock Ministries",
     tagline: "For Kids, Parents & Pastors",
     description:
-      "Watch songs, learn actions, and stay connected with the gospel message anytime, anywhere.",
+      "Watch songs, learn actions, and stay connected with the gospel message anytime, anywhere. All content is free for everyone.",
     features: ["Action Videos", "Worship Songs", "Daily Devotionals", "Church Updates"],
     color: "#5ABCB9",
+    highlight: "Free for Everyone",
   },
   {
-    id: "missionaries",
-    name: "Flock Ministries",
+    id: "shepherds",
+    name: "Flock Shepherds",
     tagline: "For Missionaries & Evangelists",
     description:
-      "Complete resources and training content to effectively evangelize and disciple children.",
+      "Complete resources and training content to effectively evangelize and disciple children wherever you serve.",
     features: ["Evangelism Tools", "Training Videos", "Resource Library", "Ministry Guides"],
     color: "#FF6B35",
+    highlight: "Gospel Resources",
   },
 ];
 
@@ -37,6 +39,15 @@ export function MobileApp() {
             Two powerful apps designed for different needs - one for kids and families,
             another for missionaries and ministry workers.
           </p>
+          {/* Free content highlight */}
+          <div className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#8DC63F]/10 border border-[#8DC63F]/20">
+            <svg className="w-5 h-5 text-[#8DC63F]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+            </svg>
+            <span className="text-sm font-semibold text-[#8DC63F]">
+              All songs and contents are FREE - because the Gospel is free!
+            </span>
+          </div>
         </div>
 
         {/* Apps Grid */}
@@ -44,36 +55,24 @@ export function MobileApp() {
           {apps.map((app) => (
             <div
               key={app.id}
-              className="bg-card border border-border rounded-3xl p-8 hover:shadow-lg transition-shadow"
+              className="bg-card border border-border rounded-3xl p-8 hover:shadow-lg transition-shadow relative overflow-hidden"
             >
+              {/* Highlight badge */}
+              <div
+                className="absolute top-6 right-6 px-3 py-1 rounded-full text-xs font-semibold text-white"
+                style={{ backgroundColor: app.color }}
+              >
+                {app.highlight}
+              </div>
+
               {/* App Header */}
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <div
-                    className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white mb-3"
-                    style={{ backgroundColor: app.color }}
-                  >
-                    {app.tagline}
-                  </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-primary">
-                    {app.name}
-                  </h3>
+              <div className="mb-6">
+                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                  {app.tagline}
                 </div>
-                {/* App Icon */}
-                <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: `${app.color}20` }}
-                >
-                  {app.id === "kids" ? (
-                    <svg className="w-7 h-7" style={{ color: app.color }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
-                    </svg>
-                  ) : (
-                    <svg className="w-7 h-7" style={{ color: app.color }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                    </svg>
-                  )}
-                </div>
+                <h3 className="text-2xl lg:text-3xl font-bold text-primary">
+                  {app.name}
+                </h3>
               </div>
 
               {/* Description */}
@@ -86,7 +85,11 @@ export function MobileApp() {
                 {app.features.map((feature) => (
                   <span
                     key={feature}
-                    className="px-3 py-1.5 text-sm font-medium rounded-full bg-muted text-muted-foreground"
+                    className="px-3 py-1.5 text-sm font-medium rounded-full"
+                    style={{
+                      backgroundColor: `${app.color}15`,
+                      color: app.color,
+                    }}
                   >
                     {feature}
                   </span>
