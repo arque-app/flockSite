@@ -3,7 +3,8 @@ import { Announcements } from "@/components/announcements";
 import { Hero } from "@/components/hero";
 import { Challenge } from "@/components/challenge";
 import { Approach } from "@/components/approach";
-import { Resources } from "@/components/resources";
+import { Curriculum } from "@/components/curriculum";
+import { Training } from "@/components/training";
 import { MobileApp } from "@/components/mobile-app";
 import { Audience } from "@/components/audience";
 import { Mission } from "@/components/mission";
@@ -19,7 +20,8 @@ export default function Home() {
         <Hero />
         <Challenge />
         <Approach />
-        <Resources />
+        <Curriculum />
+        <Training />
         <MobileApp />
         <Audience />
         <Mission />

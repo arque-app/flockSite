@@ -5,11 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 const navLinks = [
-  { href: "#about", label: "About" },
   { href: "#approach", label: "Approach" },
+  { href: "/curriculum", label: "Curriculum" },
+  { href: "/training", label: "Training" },
   { href: "/flock-ministries", label: "Apps" },
   { href: "/partner", label: "Partner" },
-  { href: "#contact", label: "Contact" },
 ];
 
 export function Header() {
