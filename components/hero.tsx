@@ -1,72 +1,76 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-      </div>
+    <section className="min-h-[90vh] flex items-center justify-center pt-24 pb-16 px-6 bg-background">
+      <div className="max-w-6xl mx-auto text-center">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card mb-10">
+          <span className="w-2 h-2 rounded-full bg-[#5ABCB9] animate-pulse" />
+          <span className="text-sm text-muted-foreground font-medium">
+            Raising the next generation in faith
+          </span>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary rounded-full text-sm font-medium text-foreground mb-8">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            Ministry Platform for Churches
-          </div>
+        {/* Main Headline */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.9] mb-8 text-primary">
+          <span className="block">Catching at VBS.</span>
+          <span className="block text-muted-foreground">Nurturing at Sunday School.</span>
+        </h1>
 
-          {/* Headline */}
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-foreground leading-tight text-balance">
-            Catching at VBS,
-            <br />
-            <span className="text-primary">Nurturing at Sunday School</span>
-          </h1>
+        {/* Subheadline */}
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+          Complete ministry resources that help churches reach children through engaging VBS 
+          programs and nurture them through structured Sunday School discipleship.
+        </p>
 
-          {/* Description */}
-          <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
-            Flock helps churches reach children through engaging VBS programs
-            and nurture them through structured Sunday School discipleship.
-            Build the next generation in faith.
-          </p>
-
-          {/* CTAs */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="#contact"
-              className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full text-base font-medium hover:bg-primary/90 transition-all"
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            href="#contact"
+            className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-colors text-base"
+          >
+            Get Started
+          </Link>
+          <Link
+            href="#approach"
+            className="px-8 py-4 border border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-primary-foreground transition-colors flex items-center gap-2 text-base"
+          >
+            Learn More
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              Start Your Journey
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="#approach"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-card border border-border text-foreground rounded-full text-base font-medium hover:bg-secondary transition-colors"
-            >
-              Learn More
-            </Link>
-          </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </Link>
+        </div>
 
-          {/* Trust indicators */}
-          <div className="mt-16 pt-8 border-t border-border">
-            <p className="text-sm text-muted-foreground mb-6">
-              Trusted by churches across the nation
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
-              {["500+ Churches", "10,000+ Children", "50+ States"].map(
-                (stat) => (
-                  <div key={stat} className="text-center">
-                    <span className="text-lg font-semibold text-foreground">
-                      {stat.split(" ")[0]}
-                    </span>
-                    <span className="text-muted-foreground ml-1">
-                      {stat.split(" ").slice(1).join(" ")}
-                    </span>
-                  </div>
-                )
-              )}
+        {/* Stats */}
+        <div className="mt-20 pt-12 border-t border-border">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary">500+</div>
+              <div className="text-sm text-muted-foreground mt-1">Churches</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary">50K+</div>
+              <div className="text-sm text-muted-foreground mt-1">Children Reached</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary">1000+</div>
+              <div className="text-sm text-muted-foreground mt-1">Volunteers Trained</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary">10+</div>
+              <div className="text-sm text-muted-foreground mt-1">Years of Ministry</div>
             </div>
           </div>
         </div>

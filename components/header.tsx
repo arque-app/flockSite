@@ -2,42 +2,32 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const navLinks = [
-  { href: "#approach", label: "Our Approach" },
+  { href: "#about", label: "About" },
+  { href: "#approach", label: "Approach" },
   { href: "#resources", label: "Resources" },
-  { href: "#app", label: "Mobile App" },
-  { href: "#mission", label: "Mission" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                className="w-5 h-5 text-primary-foreground"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.557 1.522 4.82 3.889 6.115L6 21l3.889-2.116C10.556 18.961 11.267 19 12 19c4.97 0 9-3.185 9-7.115C21 8.185 16.97 5 12 5" />
-                <circle cx="8" cy="11" r="1" fill="currentColor" />
-                <circle cx="12" cy="11" r="1" fill="currentColor" />
-                <circle cx="16" cy="11" r="1" fill="currentColor" />
-              </svg>
-            </div>
-            <span className="font-serif text-xl font-semibold text-foreground">
-              Flock
-            </span>
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/images/flock-logo.png"
+              alt="Flock Logo"
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
+            <span className="text-xl font-bold tracking-tight text-primary">FLOCK</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -46,7 +36,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label}
               </Link>
@@ -57,7 +47,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-4">
             <Link
               href="#contact"
-              className="px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+              className="px-6 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors"
             >
               Get Started
             </Link>
@@ -66,31 +56,35 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="lg:hidden p-2 text-foreground"
+            className="lg:hidden p-2 text-primary"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            <div className="w-6 h-5 flex flex-col justify-between">
+              <span
+                className={`block h-0.5 w-full bg-primary transition-transform duration-300 ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+              />
+              <span
+                className={`block h-0.5 w-full bg-primary transition-opacity duration-300 ${mobileMenuOpen ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`block h-0.5 w-full bg-primary transition-transform duration-300 ${mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+              />
+            </div>
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={cn(
-          "lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border transition-all duration-300 overflow-hidden",
-          mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        )}
+        className={`lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border transition-all duration-300 overflow-hidden ${mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
       >
-        <nav className="px-4 py-4 space-y-4">
+        <nav className="px-6 py-6 space-y-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="block text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="block text-lg font-medium text-muted-foreground hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.label}
@@ -98,7 +92,7 @@ export function Header() {
           ))}
           <Link
             href="#contact"
-            className="block w-full text-center px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+            className="block w-full text-center px-6 py-3 bg-primary text-primary-foreground rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors mt-4"
             onClick={() => setMobileMenuOpen(false)}
           >
             Get Started
